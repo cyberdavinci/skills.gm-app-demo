@@ -104,7 +104,10 @@ const OnBoardingScreen = ({ navigation }) => {
         <View style={{ marginBottom: 40 }}>
           {slides.length - 1 == currentSlideIndex ? (
             <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity style={styles.btn}>
+              <TouchableOpacity
+                style={styles.btn}
+                onPress={() => navigation.replace("HomeScreen")}
+              >
                 <Text
                   style={{ color: "#fff", fontSize: 18, fontWeight: "bold" }}
                 >
@@ -115,6 +118,7 @@ const OnBoardingScreen = ({ navigation }) => {
           ) : (
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
+                onPress={skip}
                 style={[
                   styles.btn,
                   {
