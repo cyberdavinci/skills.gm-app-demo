@@ -7,6 +7,7 @@ import {
   Text,
   FlatList,
   Image,
+  TouchableOpacity,
 } from "react-native";
 const { width, height } = Dimensions.get("window");
 
@@ -47,10 +48,99 @@ const Slide = ({ item }) => {
 };
 
 const OnBoardingScreen = ({ navigation }) => {
+  const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
+  const ref = React.useRef(null);
+
+  const updateCurrentSlideIndex = (e) => {
+    const contentOffsetX = e.nativeEvent.contentOffset.x;
+    const currentIndex = Math.round(contentOffsetX / width);
+    // console.log(currentIndex);
+    setCurrentSlideIndex(currentIndex);
+  };
+  const goToNextSlide = () => {
+    const nextSlideIndex = currentSlideIndex + 1;
+    if (nextSlideIndex !== slides.length) {
+      const offset = nextSlideIndex * width;
+      ref?.current?.scrollToOffset({ offset });
+      setCurrentSlideIndex(nextSlideIndex);
+    }
+  };
+  const skip = () => {
+    const lastSlideIndex = slides.length - 1;
+    const offset = lastSlideIndex * width;
+    ref?.current?.scrollToOffset({ offset });
+    setCurrentSlideIndex(lastSlideIndex);
+  };
   const SlideControls = () => {
     return (
-      <View style={styles.slidesControl}>
-        <View></View>
+      <View
+        style={{
+          height: height * 0.25,
+          justifyContent: "space-between",
+          paddingHorizontal: 20,
+        }}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            marginTop: 20,
+            // marginRight: 5,
+          }}
+        >
+          {slides.map((_, index) => (
+            <View
+              key={index}
+              style={[
+                styles.indicator,
+                currentSlideIndex === index && {
+                  backgroundColor: "blue",
+                  width: 25,
+                },
+              ]}
+            />
+          ))}
+        </View>
+        <View style={{ marginBottom: 40 }}>
+          {slides.length - 1 == currentSlideIndex ? (
+            <View style={{ flexDirection: "row" }}>
+              <TouchableOpacity style={styles.btn}>
+                <Text
+                  style={{ color: "#fff", fontSize: 18, fontWeight: "bold" }}
+                >
+                  Get Enlisted
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View style={{ flexDirection: "row" }}>
+              <TouchableOpacity
+                style={[
+                  styles.btn,
+                  {
+                    borderWidth: 2,
+                    backgroundColor: "transparent",
+                    borderColor: "teal",
+                  },
+                ]}
+              >
+                <Text
+                  style={{ color: "#000", fontSize: 18, fontWeight: "bold" }}
+                >
+                  Skip
+                </Text>
+              </TouchableOpacity>
+              <View style={{ padding: 10 }} />
+              <TouchableOpacity onPress={goToNextSlide} style={[styles.btn]}>
+                <Text
+                  style={{ color: "#fff", fontSize: 18, fontWeight: "bold" }}
+                >
+                  Next
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </View>
       </View>
     );
   };
@@ -58,13 +148,16 @@ const OnBoardingScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <FlatList
+        ref={ref}
         pagingEnabled
+        onMomentumScrollEnd={updateCurrentSlideIndex}
         data={slides}
         contentContainerStyle={{ height: height * 0.75 }}
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => <Slide item={item} />}
       />
+      <SlideControls />
     </SafeAreaView>
   );
 };
@@ -81,6 +174,20 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginTop: 10,
     fontWeight: "600",
+  },
+  indicator: {
+    width: 16,
+    borderRadius: 2,
+    height: 5,
+    backgroundColor: "gray",
+    marginRight: 7,
+  },
+  btn: {
+    flex: 1,
+    backgroundColor: "teal",
+    paddingVertical: 18,
+    borderRadius: 10,
+    alignItems: "center",
   },
 });
 export default OnBoardingScreen;
