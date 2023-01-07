@@ -14,7 +14,7 @@ const StarterScreen = ({ navigation }) => {
       <Text style={styles.text}>Welcome to Gambia Skills Directory</Text>
       <Text style={styles.text}>All Skills ONE Place</Text>
       <Image
-        source={require("../../assets/images/staterbg.png")}
+        source={require("../../assets/images/starterbg.png")}
         style={{ width: "70%", height: "40%" }}
       />
       <TouchableOpacity
