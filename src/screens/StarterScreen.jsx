@@ -1,6 +1,13 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
-
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  Dimensions,
+} from "react-native";
+const { width, height } = Dimensions.get("window");
 const StarterScreen = ({ navigation }) => {
   return (
     <View
@@ -14,8 +21,8 @@ const StarterScreen = ({ navigation }) => {
       <Text style={styles.text}>Welcome to Gambia Skills Directory</Text>
       <Text style={styles.text}>All Skills ONE Place</Text>
       <Image
-        source={require("../../assets/images/starterbg.png")}
-        style={{ width: "70%", height: "40%" }}
+        source={require("../../assets/images/logo.jpg")}
+        style={{ width: width, resizeMode: "center" }}
       />
       <TouchableOpacity
         style={{

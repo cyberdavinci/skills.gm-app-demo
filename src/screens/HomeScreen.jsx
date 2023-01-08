@@ -11,9 +11,10 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import WantTo from "../components/WantTo";
+import ServicesShort from "../components/ServicesShort";
 // import { wants } from "../Datas/wanto";
 // const { width, height } = Dimensions.get("window");
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [searchValue, setSearchValue] = React.useState("");
   return (
     <ScrollView
@@ -51,7 +52,11 @@ const HomeScreen = () => {
           style={styles.searchIcon}
         />
       </View>
+      {/* suggesting for what the user might want */}
       <WantTo />
+
+      {/* services shorcut */}
+      <ServicesShort navigation={navigation} />
     </ScrollView>
   );
 };
@@ -67,7 +72,7 @@ const styles = StyleSheet.create({
   },
   search: {
     backgroundColor: "#FCFBFC",
-    borderWidth: 0.5,
+    // borderWidth: 0.5,
     borderColor: "#01279A",
     width: "100%",
     paddingVertical: 12,

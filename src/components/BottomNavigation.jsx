@@ -40,7 +40,7 @@ const CustomBottomNavigation = () => {
       sceneContainerStyle={{
         paddingTop: insets.top,
         paddingBottom: insets.bottom,
-        backgroundColor: "#fff",
+        // backgroundColor: "#fff",
         // paddingLeft: insets.left,
         // paddingRight: insets.right,
       }}
