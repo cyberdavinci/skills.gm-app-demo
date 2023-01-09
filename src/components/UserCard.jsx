@@ -26,16 +26,23 @@ const users = [
 
 const UserCard = () => {
   return (
-    <View style={{ padding: 10 }}>
+    <View style={{ justifyContent: "center", alignItems: "center" }}>
       {users.map((user) => (
-        <TouchableOpacity style={[styles.container, { width: width * 0.5 }]}>
+        <View
+          style={[
+            styles.container,
+            { width: width * 0.8, height: height * 0.5 },
+          ]}
+        >
           <View style={{ position: "relative" }}>
             <Image
               source={user.profilePic}
               style={{
-                width: width * 0.5,
-                height: 120,
+                width: width * 0.8,
+                height: height * 0.31,
                 // borderRadius: 10,
+                borderTopLeftRadius: 20,
+                borderTopRightRadius: 20,
                 resizeMode: "cover",
               }}
             />
@@ -69,8 +76,10 @@ const UserCard = () => {
           <View
             style={{
               flexDirection: "row",
+              alignItems: "center",
               justifyContent: "space-evenly",
               padding: 5,
+              height: 60,
               backgroundColor: "#01279A",
               width: "100%",
             }}
@@ -82,9 +91,13 @@ const UserCard = () => {
           <View
             style={{
               flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
               //   justifyContent: "s",
               padding: 5,
               paddingRight: 30,
+              marginTop: 20,
+
               //   paddingHorizontal: 25,
             }}
           >
@@ -103,7 +116,7 @@ const UserCard = () => {
             <Text style={styles.proffession}>{user.proffession}</Text>
             {/* <View style={{ paddingHorizontal: 25 }} /> */}
           </View>
-        </TouchableOpacity>
+        </View>
       ))}
     </View>
   );
@@ -111,12 +124,14 @@ const UserCard = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    // borderRadius: 20,
+    borderRadius: 20,
     alignItems: "center",
+    marginBottom: 50,
   },
   name: {
     fontWeight: "bold",
     color: "#fff",
+    fontSize: 24,
     // paddingLeft: 15,
   },
   view: {
@@ -124,19 +139,27 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     // fontSize: 20,
   },
-  dateLocationText: { fontSize: 16 },
+  dateLocationText: { fontSize: 20, color: "gray" },
   proffessionContainer: {
     backgroundColor: "#01279A",
     width: "100%",
     marginVertical: 15,
     alignItems: "center",
-    marginBottom: 0,
+    justifyContent: "center",
+    height: 50,
+    marginTop: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    // marginBottom: 0,
+
     // borderRadius: 5,
   },
+  //   dateLocationText: {},
+  //   dateLocationText: { fontSize: 20 },
   proffession: {
     color: "#fff",
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 24,
   },
 });
 

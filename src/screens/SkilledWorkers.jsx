@@ -16,7 +16,7 @@ const SkilledWorkers = () => {
   const [searchValue, setSearchValue] = React.useState("");
 
   return (
-    <View style={{ flex: 1, padding: 10 }}>
+    <View style={{ flex: 1, paddingHorizontal: 10 }}>
       <View
         style={{
           //   flexDirection: "row",
@@ -24,11 +24,11 @@ const SkilledWorkers = () => {
           marginTop: 30,
           position: "relative",
           height: height * 0.1,
-          width: width * 0.9,
+          width: width * 0.7,
         }}
       >
         <TextInput
-          placeholder="What do you need?"
+          placeholder="Who you looking for?"
           placeholderTextColor={""}
           onChange={setSearchValue}
           value={searchValue}
@@ -41,15 +41,16 @@ const SkilledWorkers = () => {
           style={styles.searchIcon}
         />
       </View>
-      <ScrollView
-        style={{
-          width: width,
-          flexDirection: "row",
-          height: height * 0.85,
-        }}
-      >
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {/* <View
+          style={{
+            flexDirection: "row",
+            height: height * 0.85,
+          }}
+        > */}
         <UserCard />
         <UserCard />
+        {/* </View> */}
       </ScrollView>
     </View>
   );
@@ -64,10 +65,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     fontSize: 16,
     position: "absolute",
+    left: 35,
     borderRadius: 10,
   },
   searchIcon: {
-    left: 347,
+    left: 320,
     backgroundColor: "#01279A",
     width: 43,
     paddingVertical: 11,
