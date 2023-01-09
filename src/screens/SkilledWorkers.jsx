@@ -1,41 +1,30 @@
 import React from "react";
 import {
-  Text,
   View,
   StyleSheet,
   TextInput,
   Dimensions,
-  Image,
-  TouchableOpacity,
   ScrollView,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import WantTo from "../components/WantTo";
-import ServicesShort from "../components/ServicesShort";
-// import { wants } from "../Datas/wanto";
-// const { width, height } = Dimensions.get("window");
-const HomeScreen = ({ navigation }) => {
-  const [searchValue, setSearchValue] = React.useState("");
-  return (
-    <ScrollView
-      style={{
-        flex: 1,
-        marginTop: 30,
-        paddingHorizontal: 10,
-        // backgroundColor: "#fff",
-      }}
-    >
-      <View style={{}}>
-        <Text style={styles.greeting}>HELLO CYBER 👋</Text>
-        <Text style={styles.question}>Need a handyman??</Text>
-      </View>
 
+import UserCard from "../components/UserCard";
+
+const { width, height } = Dimensions.get("window");
+
+const SkilledWorkers = () => {
+  const [searchValue, setSearchValue] = React.useState("");
+
+  return (
+    <View style={{ flex: 1, padding: 10 }}>
       <View
         style={{
-          flexDirection: "row",
-          alignItems: "center",
+          //   flexDirection: "row",
+          //   alignItems: "center",
           marginTop: 30,
           position: "relative",
+          height: height * 0.1,
+          width: width * 0.9,
         }}
       >
         <TextInput
@@ -52,24 +41,20 @@ const HomeScreen = ({ navigation }) => {
           style={styles.searchIcon}
         />
       </View>
-      {/* suggesting for what the user might want */}
-      <WantTo />
-
-      {/* services shorcut */}
-      <ServicesShort navigation={navigation} />
-    </ScrollView>
+      <ScrollView
+        style={{
+          width: width,
+          flexDirection: "row",
+          height: height * 0.85,
+        }}
+      >
+        <UserCard />
+        <UserCard />
+      </ScrollView>
+    </View>
   );
 };
-
 const styles = StyleSheet.create({
-  greeting: {
-    color: "gray",
-    fontSize: 20,
-  },
-  question: {
-    fontSize: 34,
-    fontWeight: "800",
-  },
   search: {
     backgroundColor: "#FCFBFC",
     // borderWidth: 0.5,
@@ -82,13 +67,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   searchIcon: {
-    left: 343,
+    left: 347,
     backgroundColor: "#01279A",
-    // width: 43,
-    paddingVertical: 12,
+    width: 43,
+    paddingVertical: 11,
     paddingHorizontal: 10,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
   },
 });
-export default HomeScreen;
+
+export default SkilledWorkers;
