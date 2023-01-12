@@ -9,7 +9,7 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 
 import UserCard from "../components/UserCard";
-
+// import MoreUserInfo from "../components/MoreUserInfo";
 const { width, height } = Dimensions.get("window");
 
 const SkilledWorkers = () => {
@@ -24,7 +24,7 @@ const SkilledWorkers = () => {
           marginTop: 30,
           position: "relative",
           height: height * 0.1,
-          width: width * 0.7,
+          width: width * 0.9,
         }}
       >
         <TextInput
@@ -49,7 +49,7 @@ const SkilledWorkers = () => {
           }}
         > */}
         <UserCard />
-        <UserCard />
+        {/* <UserCard /> */}
         {/* </View> */}
       </ScrollView>
     </View>
@@ -65,11 +65,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     fontSize: 16,
     position: "absolute",
-    left: 35,
+    left: 10,
     borderRadius: 10,
   },
   searchIcon: {
-    left: 320,
+    left: 335,
     backgroundColor: "#01279A",
     width: 43,
     paddingVertical: 11,

@@ -11,9 +11,11 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
+import MoreUserInfo from "./MoreUserInfo";
 const { width, height } = Dimensions.get("window");
 const users = [
   {
+    id: 0,
     profilePic: require("../../assets/images/user-images/demoprofession.jpeg"),
     name: "Ousman Faal",
     rate: "5",
@@ -21,24 +23,64 @@ const users = [
     date: "Jan 9, 2023",
     proffession: "Tailor",
     views: "90",
+    liked: false,
+    likes: 4,
+    view: false,
+  },
+  {
+    id: 1,
+    profilePic: require("../../assets/images/user-images/demoprofession.jpeg"),
+    name: "Cyber",
+    rate: "5",
+    location: "Mars",
+    date: "Jan 9, 2023",
+    proffession: "EH",
+    views: "100",
+    liked: false,
+    likes: 4,
+    view: false,
   },
 ];
 
 const UserCard = () => {
+  const [fillHeart, setFillHeart] = React.useState("hearto");
+  const [visible, setVisible] = React.useState(false);
+  const [updatedUser, setUpdatedUser] = React.useState({});
+  const toggleBottomNavigationView = (index) => {
+    let currentSelectedUser = users
+      .map((user, id) => {
+        return index === id ? { ...user, view: !user.view } : user;
+      })
+      .filter((user) => user.view);
+
+    setUpdatedUser(currentSelectedUser);
+    //Toggling the visibility state of the bottom sheet
+    setVisible(!visible);
+  };
+  const liked = (index) => {
+    // users.map((user, id) => {
+    //   setFillHeart(index === id ? "heart" : "hearto");
+    //   // return index === id ? { ...user, liked: !user.liked } : user;
+    // });
+    console.log((users[index].liked = false));
+  };
   return (
     <View style={{ justifyContent: "center", alignItems: "center" }}>
-      {users.map((user) => (
-        <View
+      {users.map((user, index) => (
+        <TouchableOpacity
+          onPress={() => toggleBottomNavigationView(index)}
+          activeOpacity={1}
+          key={index}
           style={[
             styles.container,
-            { width: width * 0.8, height: height * 0.5 },
+            { width: width * 0.9, height: height * 0.5 },
           ]}
         >
           <View style={{ position: "relative" }}>
             <Image
               source={user.profilePic}
               style={{
-                width: width * 0.8,
+                width: width * 0.9,
                 height: height * 0.31,
                 // borderRadius: 10,
                 borderTopLeftRadius: 20,
@@ -47,12 +89,16 @@ const UserCard = () => {
               }}
             />
             <AntDesign
-              name="hearto"
-              size={25}
+              onPress={() => {
+                liked(index);
+                // setFillHeart(`${user.liked ? "heart" : "hearto"}`);
+              }}
+              name={fillHeart}
+              size={30}
               color="red"
               style={{
                 position: "absolute",
-                top: 90,
+                top: 10,
                 marginLeft: 10,
               }}
             />
@@ -65,6 +111,9 @@ const UserCard = () => {
               }}
             >
               <AntDesign
+                onPress={(name) => {
+                  name;
+                }}
                 name="eyeo"
                 size={28}
                 color="#01279A"
@@ -116,8 +165,14 @@ const UserCard = () => {
             <Text style={styles.proffession}>{user.proffession}</Text>
             {/* <View style={{ paddingHorizontal: 25 }} /> */}
           </View>
-        </View>
+        </TouchableOpacity>
       ))}
+      <MoreUserInfo
+        toggleBottomNavigationView={toggleBottomNavigationView}
+        visible={visible}
+        setVisible={setVisible}
+        selectedUser={updatedUser}
+      />
     </View>
   );
 };
