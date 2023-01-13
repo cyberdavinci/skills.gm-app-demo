@@ -4,13 +4,42 @@ import {
   StyleSheet,
   TextInput,
   Dimensions,
-  ScrollView,
+  FlatList,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 import UserCard from "../components/UserCard";
 // import MoreUserInfo from "../components/MoreUserInfo";
 const { width, height } = Dimensions.get("window");
+
+const users = [
+  {
+    id: 0,
+    profilePic: require("../../assets/images/user-images/demoprofession.jpeg"),
+    name: "Ousman Faal",
+    rate: "5",
+    location: "Sukuta",
+    date: "Jan 9, 2023",
+    proffession: "Tailor",
+    views: "90",
+    liked: false,
+    likes: 4,
+    view: false,
+  },
+  {
+    id: 1,
+    profilePic: require("../../assets/images/user-images/demoprofession.jpeg"),
+    name: "Cyber",
+    rate: "5",
+    location: "Mars",
+    date: "Jan 9, 2023",
+    proffession: "EH",
+    views: 100,
+    liked: false,
+    likes: 4,
+    view: false,
+  },
+];
 
 const SkilledWorkers = () => {
   const [searchValue, setSearchValue] = React.useState("");
@@ -41,17 +70,12 @@ const SkilledWorkers = () => {
           style={styles.searchIcon}
         />
       </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* <View
-          style={{
-            flexDirection: "row",
-            height: height * 0.85,
-          }}
-        > */}
-        <UserCard />
-        {/* <UserCard /> */}
-        {/* </View> */}
-      </ScrollView>
+      <FlatList
+        data={users}
+        renderItem={(user) => <UserCard user={user} users={users} />}
+        keyExtractor={(user) => user.id}
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   );
 };
