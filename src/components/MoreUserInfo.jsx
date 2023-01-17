@@ -9,8 +9,13 @@ import {
   Text,
   Dimensions,
   Image,
+  FlatList,
+  ScrollView,
+  TouchableOpacity,
 } from "react-native";
+// Do not uncomment this section until you find a solution to it
 
+// import Carousel from "react-native-snap-carousel";
 //import basic react native components
 import { BottomSheet } from "react-native-btr";
 
@@ -22,25 +27,27 @@ const MoreUserInfo = ({
   visible,
   toggleBottomNavigationView,
   selectedUser,
+  users,
 }) => {
+  const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
+  const ref = React.useRef(0);
+
+  const updateCurrentSlideIndex = (e) => {
+    const contenttOffsetX = e.nativeEvent.contentOffset.x;
+    const currentIndex = Math.round(contenttOffsetX / width);
+    // console.log(currentIndex);
+    setCurrentSlideIndex(currentIndex);
+  };
+  // const nextSlide = () => {};
+  // const nextSlideIndex = currentSlideIndex + 1;
+  // if (nextSlideIndex !== selectedUser.item.imageGallery.length) {
+  //   const offset = nextSlideIndex * width;
+  //   ref?.current?.scrollToOffset({ offset });
+  //   setCurrentSlideIndex(nextSlideIndex);
+  // }
   // console.log(selectedUser);
   return (
     <SafeAreaView style={styles.container}>
-      {/* <View style={styles.container}> */}
-      {/* <Text
-          style={{
-            fontSize: 20,
-            marginBottom: 20,
-            textAlign: "center",
-          }}
-        >
-          Example of Bottom Sheet in React Native
-        </Text>
-        <Button
-          onPress={toggleBottomNavigationView}
-          //on Press of the button bottom sheet will be visible
-          title="Show Bottom Sheet"
-        /> */}
       <BottomSheet
         visible={visible}
         //setting the visibility state of the bottom shee
@@ -53,26 +60,43 @@ const MoreUserInfo = ({
         {/*Bottom Sheet inner View*/}
         <View style={[styles.bottomNavigationView, { height: height * 0.9 }]}>
           {selectedUser && (
-            <View
-              key={selectedUser.index}
-              style={{
-                flex: 1,
-                flexDirection: "column",
-                // justifyContent: "space-between",
-              }}
-            >
-              <Image
-                source={selectedUser.item.profilePic}
-                style={{
-                  height: "35%",
-                  width: width,
-                  borderTopRightRadius: 30,
-                  borderTopLeftRadius: 30,
-                  resizeMode: "cover",
-                  // marginTop: 40,
-                }}
-              />
-              <Text>{selectedUser.item.name}</Text>
+            <View key={selectedUser.index}>
+              <ScrollView
+                showsHorizontalScrollIndicator={false}
+                ref={ref}
+                horizontal
+                onMomentumScrollEnd={updateCurrentSlideIndex}
+                style={{ height: height * 0.4 }}
+              >
+                {selectedUser.item.imageGallery.map((item, index) => (
+                  <Image
+                    key={index}
+                    source={{ uri: item }}
+                    style={{
+                      width: width,
+                      height: height * 0.4,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderTopRightRadius: 30,
+                      borderTopLeftRadius: 30,
+                    }}
+                  />
+                ))}
+              </ScrollView>
+              <View style={[styles.userInfo, { height: height * 0.4 }]}>
+                <Text style={styles.userName}>{selectedUser.item.name}</Text>
+                <Text style={styles.userDescription}>
+                  {" "}
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi
+                  at, quisquam cum voluptatum sed soluta cupiditate fugiat quia
+                  voluptates eaque consectetur omnis est aliquam.
+                </Text>
+              </View>
+              <View>
+                <TouchableOpacity style={styles.hireBtn}>
+                  <Text style={styles.hireText}>Hire</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           )}
         </View>
@@ -101,4 +125,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
   },
+  userInfo: { padding: 20 },
+  userName: { fontSize: 24, fontWeight: "bold" },
+  userDescription: { fontSize: 16, textAlign: "justify" },
 });

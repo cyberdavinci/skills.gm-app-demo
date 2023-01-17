@@ -16,12 +16,20 @@ const users = [
   {
     id: 0,
     profilePic: require("../../assets/images/user-images/demoprofession.jpeg"),
+    imageGallery: [
+      "https://www.pexels.com/photo/person-sewing-2249290/",
+      "https://images.pexels.com/photos/1189675/pexels-photo-1189675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://www.pexels.com/photo/patterns-on-gray-fabric-6766247/",
+      "https://www.pexels.com/photo/person-in-black-and-gray-long-sleeve-shirt-holding-brown-wooden-board-4621569/",
+    ],
     name: "Ousman Faal",
+    aboutCustomer:
+      "Hi there! I am Ous, psum dolor sit, amet consectetur adipisicing elit. Nisi at, quisquam cum voluptatum sed soluta cupiditate fugiat quia.",
     rate: "5",
     location: "Sukuta",
     date: "Jan 9, 2023",
     proffession: "Tailor",
-    views: "90",
+    views: 90,
     liked: false,
     likes: 4,
     view: false,
@@ -29,7 +37,16 @@ const users = [
   {
     id: 1,
     profilePic: require("../../assets/images/user-images/demoprofession.jpeg"),
+
+    imageGallery: [
+      "https://www.pexels.com/photo/man-in-grey-sweater-holding-yellow-sticky-note-879109/",
+      "https://www.pexels.com/@goumbik/",
+      "https://www.pexels.com/photo/blur-business-close-up-code-270557/",
+      "https://www.pexels.com/photo/two-men-looking-at-a-laptop-4974920/",
+    ],
     name: "Cyber",
+    aboutCustomer:
+      "Hi there! I am Ous, psum dolor sit, amet consectetur adipisicing elit. Nisi at, quisquam cum voluptatum sed soluta cupiditate fugiat quia.",
     rate: "5",
     location: "Mars",
     date: "Jan 9, 2023",

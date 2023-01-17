@@ -18,7 +18,7 @@ const { width, height } = Dimensions.get("window");
 const UserCard = ({ users, user }) => {
   const [fillHeart, setFillHeart] = React.useState("hearto");
   const [visible, setVisible] = React.useState(false);
-  const [updatedUser, setUpdatedUser] = React.useState({});
+  // const [updatedUser, setUpdatedUser] = React.useState({});
 
   // ######################
   const toggleBottomNavigationView = () => {
@@ -159,6 +159,7 @@ const UserCard = ({ users, user }) => {
         visible={visible}
         setVisible={setVisible}
         selectedUser={user}
+        users={users}
       />
     </View>
   );
