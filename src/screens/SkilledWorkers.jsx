@@ -15,12 +15,13 @@ const { width, height } = Dimensions.get("window");
 const users = [
   {
     id: 0,
-    profilePic: require("../../assets/images/user-images/demoprofession.jpeg"),
+    profilePic:
+      "https://images.pexels.com/photos/9850081/pexels-photo-9850081.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     imageGallery: [
-      "https://www.pexels.com/photo/person-sewing-2249290/",
+      "https://images.pexels.com/photos/2249290/pexels-photo-2249290.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "https://images.pexels.com/photos/1189675/pexels-photo-1189675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "https://www.pexels.com/photo/patterns-on-gray-fabric-6766247/",
-      "https://www.pexels.com/photo/person-in-black-and-gray-long-sleeve-shirt-holding-brown-wooden-board-4621569/",
+      "https://images.pexels.com/photos/6766247/pexels-photo-6766247.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/3814539/pexels-photo-3814539.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     ],
     name: "Ousman Faal",
     aboutCustomer:
@@ -36,13 +37,14 @@ const users = [
   },
   {
     id: 1,
-    profilePic: require("../../assets/images/user-images/demoprofession.jpeg"),
+    profilePic:
+      "https://images.pexels.com/photos/4709285/pexels-photo-4709285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 
     imageGallery: [
-      "https://www.pexels.com/photo/man-in-grey-sweater-holding-yellow-sticky-note-879109/",
-      "https://www.pexels.com/@goumbik/",
-      "https://www.pexels.com/photo/blur-business-close-up-code-270557/",
-      "https://www.pexels.com/photo/two-men-looking-at-a-laptop-4974920/",
+      "https://images.pexels.com/photos/340152/pexels-photo-340152.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/4709291/pexels-photo-4709291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/4974912/pexels-photo-4974912.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1https://www.pexels.com/photo/two-men-looking-at-a-laptop-4974920/",
     ],
     name: "Cyber",
     aboutCustomer:

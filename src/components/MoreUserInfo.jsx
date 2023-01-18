@@ -29,22 +29,12 @@ const MoreUserInfo = ({
   selectedUser,
   users,
 }) => {
-  const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
-  const ref = React.useRef(0);
+  const ref = React.useRef(null);
 
-  const updateCurrentSlideIndex = (e) => {
-    const contenttOffsetX = e.nativeEvent.contentOffset.x;
-    const currentIndex = Math.round(contenttOffsetX / width);
-    // console.log(currentIndex);
-    setCurrentSlideIndex(currentIndex);
+  const goToNextSlide = (index) => {
+    const newOffset = index * width;
+    ref?.current?.scrollTo({ x: newOffset });
   };
-  // const nextSlide = () => {};
-  // const nextSlideIndex = currentSlideIndex + 1;
-  // if (nextSlideIndex !== selectedUser.item.imageGallery.length) {
-  //   const offset = nextSlideIndex * width;
-  //   ref?.current?.scrollToOffset({ offset });
-  //   setCurrentSlideIndex(nextSlideIndex);
-  // }
   // console.log(selectedUser);
   return (
     <SafeAreaView style={styles.container}>
@@ -57,15 +47,16 @@ const MoreUserInfo = ({
 
         //Toggling the visibility state on the clicking out side of the sheet
       >
-        {/*Bottom Sheet inner View*/}
+        {/*Bottom Sheet inner View starts here ------*/}
         <View style={[styles.bottomNavigationView, { height: height * 0.9 }]}>
           {selectedUser && (
             <View key={selectedUser.index}>
               <ScrollView
                 showsHorizontalScrollIndicator={false}
+                pagingEnabled
                 ref={ref}
                 horizontal
-                onMomentumScrollEnd={updateCurrentSlideIndex}
+                // onMomentumScrollEnd={updateCurrentSlideIndex}
                 style={{ height: height * 0.4 }}
               >
                 {selectedUser.item.imageGallery.map((item, index) => (
@@ -83,7 +74,25 @@ const MoreUserInfo = ({
                   />
                 ))}
               </ScrollView>
-              <View style={[styles.userInfo, { height: height * 0.4 }]}>
+
+              <View
+                style={{ flexDirection: "row", justifyContent: "space-evenly" }}
+              >
+                {selectedUser.item.imageGallery.map((item, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => {
+                      goToNextSlide(index);
+                    }}
+                  >
+                    <Image
+                      source={{ uri: item }}
+                      style={{ width: 70, height: 70 }}
+                    />
+                  </TouchableOpacity>
+                ))}
+              </View>
+              <View style={[styles.userInfo, { height: height * 0.3 }]}>
                 <Text style={styles.userName}>{selectedUser.item.name}</Text>
                 <Text style={styles.userDescription}>
                   {" "}

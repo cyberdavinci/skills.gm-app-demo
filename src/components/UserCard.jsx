@@ -63,7 +63,7 @@ const UserCard = ({ users, user }) => {
       >
         <View style={{ position: "relative" }}>
           <Image
-            source={user.item.profilePic}
+            source={{ uri: user.item.profilePic }}
             style={{
               width: width * 0.9,
               height: height * 0.31,
