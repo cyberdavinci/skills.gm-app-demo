@@ -59,7 +59,10 @@ const UserCard = ({ users, user }) => {
         }}
         activeOpacity={1}
         // key={index}
-        style={[styles.container, { width: width * 0.9, height: height * 0.5 }]}
+        style={[
+          styles.container,
+          { width: width * 0.9, height: height * 0.53 },
+        ]}
       >
         <View style={{ position: "relative" }}>
           <Image
@@ -108,15 +111,17 @@ const UserCard = ({ users, user }) => {
               {user.item.views}
             </Text>
           </View>
+          {/* ++++++++++++++++ user name ++++++++++++++++++++ */}
         </View>
         <View
           style={{
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-evenly",
+            paddingLeft: 30,
+            // justifyContent: "space-evenly",
             padding: 5,
             height: 60,
-            backgroundColor: "#01279A",
+            // backgroundColor: "#01279A",
             width: "100%",
           }}
         >
@@ -127,25 +132,22 @@ const UserCard = ({ users, user }) => {
         <View
           style={{
             flexDirection: "row",
-            justifyContent: "center",
+            paddingLeft: 25,
             alignItems: "center",
-            //   justifyContent: "s",
-            padding: 5,
-            paddingRight: 30,
             marginTop: 20,
-
-            //   paddingHorizontal: 25,
           }}
         >
           <EvilIcons
             name="location"
             size={26}
-            color="#01279A"
+            color="#fff"
             //   style={styles.dateLocationText}
           />
-          <Text style={styles.dateLocationText}>{user.item.location}</Text>
-          <View style={{ padding: 5 }} />
-          <Text style={styles.dateLocationText}>{user.item.date}</Text>
+          <Text style={styles.dateLocationText}>
+            {user.item.location} {user.item.date}
+          </Text>
+          {/* <View style={{ padding: 5 }} /> */}
+          {/* <Text style={styles.dateLocationText}></Text> */}
         </View>
         {/*  */}
         <View style={styles.proffessionContainer}>
@@ -166,9 +168,10 @@ const UserCard = ({ users, user }) => {
 };
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
+    backgroundColor: "#00142B",
     borderRadius: 20,
-    alignItems: "center",
+    // alignItems: "center",
+
     marginBottom: 50,
   },
   name: {
@@ -182,27 +185,25 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     // fontSize: 20,
   },
-  dateLocationText: { fontSize: 20, color: "gray" },
+  dateLocationText: { fontSize: 20, color: "#fff" },
   proffessionContainer: {
-    backgroundColor: "#01279A",
+    // backgroundColor: "#01279A",
     width: "100%",
     marginVertical: 15,
-    alignItems: "center",
+    // alignItems: "center",
     justifyContent: "center",
     height: 50,
     marginTop: 10,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
-    // marginBottom: 0,
-
-    // borderRadius: 5,
   },
-  //   dateLocationText: {},
-  //   dateLocationText: { fontSize: 20 },
+
   proffession: {
     color: "#fff",
-    fontWeight: "bold",
+    fontWeight: "900",
     fontSize: 24,
+    paddingLeft: 30,
+    textTransform: "uppercase",
   },
 });
 

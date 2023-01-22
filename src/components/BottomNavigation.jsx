@@ -27,12 +27,21 @@ const CustomBottomNavigation = () => {
   const insets = useSafeAreaInsets();
   return (
     <Tab.Navigator
-      sceneContainerStyle={{
-        paddingTop: insets.top,
-        paddingBottom: insets.bottom,
-      }}
+      sceneContainerStyle={[
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+          backgroundColor: "#fff",
+        },
+      ]}
       screenOptions={({ route }) => ({
         headerShown: false,
+        tabBarStyle: {
+          borderRadius: 20,
+          marginBottom: 10,
+          width: 400,
+          alignSelf: "center",
+        },
         tabBarIcon: ({ focused, color, size }) => {
           // let iconName;
           switch (route.name) {
@@ -42,7 +51,7 @@ const CustomBottomNavigation = () => {
                 <Ionicons
                   name={"home"}
                   size={24}
-                  color={`${focused ? "#01279A" : "gray"}`}
+                  color={`${focused ? "#01279A" : "#00142B"}`}
                 />
               );
 
@@ -52,7 +61,7 @@ const CustomBottomNavigation = () => {
                 <FontAwesome5
                   name={"users-cog"}
                   size={24}
-                  color={`${focused ? "#01279A" : "gray"}`}
+                  color={`${focused ? "#01279A" : "#00142B"}`}
                 />
               );
             case "Services":
@@ -60,7 +69,7 @@ const CustomBottomNavigation = () => {
                 <AntDesign
                   name={"customerservice"}
                   size={24}
-                  color={`${focused ? "#01279A" : "gray"}`}
+                  color={`${focused ? "#01279A" : "#00142B"}`}
                 />
               );
             case "Account":
@@ -68,7 +77,7 @@ const CustomBottomNavigation = () => {
                 <Feather
                   name={"user"}
                   size={24}
-                  color={`${focused ? "#01279A" : "gray"}`}
+                  color={`${focused ? "#01279A" : "#00142B"}`}
                 />
               );
             default:
@@ -92,5 +101,6 @@ const styles = StyleSheet.create({
     // flex: 1,
     backgroundColor: "#000",
   },
+  tabBarStyle: {},
 });
 export default CustomBottomNavigation;

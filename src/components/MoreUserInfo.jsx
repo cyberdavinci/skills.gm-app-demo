@@ -27,14 +27,20 @@ const MoreUserInfo = ({
   visible,
   toggleBottomNavigationView,
   selectedUser,
-  users,
 }) => {
   const ref = React.useRef(null);
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+
+  const updateCurrentSlideIndex = (index) => {
+    setCurrentIndex(index);
+  };
 
   const goToNextSlide = (index) => {
     const newOffset = index * width;
     ref?.current?.scrollTo({ x: newOffset });
+    updateCurrentSlideIndex(index);
   };
+
   // console.log(selectedUser);
   return (
     <SafeAreaView style={styles.container}>
@@ -56,21 +62,20 @@ const MoreUserInfo = ({
                 pagingEnabled
                 ref={ref}
                 horizontal
-                // onMomentumScrollEnd={updateCurrentSlideIndex}
+                onMomentumScrollEnd={updateCurrentSlideIndex}
                 style={{ height: height * 0.4 }}
               >
                 {selectedUser.item.imageGallery.map((item, index) => (
                   <Image
                     key={index}
                     source={{ uri: item }}
-                    style={{
-                      width: width,
-                      height: height * 0.4,
-                      alignItems: "center",
-                      justifyContent: "center",
-                      borderTopRightRadius: 30,
-                      borderTopLeftRadius: 30,
-                    }}
+                    style={[
+                      styles.galleryImage,
+                      {
+                        width: width,
+                        height: "100%",
+                      },
+                    ]}
                   />
                 ))}
               </ScrollView>
@@ -84,10 +89,22 @@ const MoreUserInfo = ({
                     onPress={() => {
                       goToNextSlide(index);
                     }}
+                    style={{ marginTop: 10 }}
                   >
                     <Image
                       source={{ uri: item }}
-                      style={{ width: 70, height: 70 }}
+                      style={[
+                        currentIndex === index ? styles.activeImage : null,
+                        {
+                          width: 72,
+                          height: 72,
+                          borderRadius: 10,
+
+                          // borderColor: "#01279A",
+                          // borderWidth: 5,
+                          // borderRadius: 30,
+                        },
+                      ]}
                     />
                   </TouchableOpacity>
                 ))}
@@ -95,17 +112,13 @@ const MoreUserInfo = ({
               <View style={[styles.userInfo, { height: height * 0.3 }]}>
                 <Text style={styles.userName}>{selectedUser.item.name}</Text>
                 <Text style={styles.userDescription}>
-                  {" "}
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi
-                  at, quisquam cum voluptatum sed soluta cupiditate fugiat quia
-                  voluptates eaque consectetur omnis est aliquam.
+                  {selectedUser.item.aboutSkilledWorker}
                 </Text>
               </View>
-              <View>
-                <TouchableOpacity style={styles.hireBtn}>
-                  <Text style={styles.hireText}>Hire</Text>
-                </TouchableOpacity>
-              </View>
+
+              <TouchableOpacity style={styles.hireBtn}>
+                <Text style={styles.hireText}>Hire me!🙂</Text>
+              </TouchableOpacity>
             </View>
           )}
         </View>
@@ -134,7 +147,38 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
   },
+  galleryImage: {
+    alignItems: "center",
+    justifyContent: "center",
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    // marginBottom: 10,
+  },
+  activeImage: {
+    borderWidth: 3,
+    borderColor: "#01279A",
+    width: 75,
+    height: 75,
+    // borderRadius: 10,
+  },
+  // activeImage: {},
   userInfo: { padding: 20 },
   userName: { fontSize: 24, fontWeight: "bold" },
   userDescription: { fontSize: 16, textAlign: "justify" },
+  hireBtn: {
+    marginBottom: 30,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  hireText: {
+    alignItems: "center",
+    width: 300,
+    textAlign: "center",
+
+    backgroundColor: "#01279A",
+    color: "#fff",
+    paddingVertical: 15,
+    borderRadius: 10,
+    fontSize: 18,
+  },
 });

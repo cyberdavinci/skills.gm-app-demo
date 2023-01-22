@@ -24,7 +24,7 @@ const users = [
       "https://images.pexels.com/photos/3814539/pexels-photo-3814539.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     ],
     name: "Ousman Faal",
-    aboutCustomer:
+    aboutSkilledWorker:
       "Hi there! I am Ous, psum dolor sit, amet consectetur adipisicing elit. Nisi at, quisquam cum voluptatum sed soluta cupiditate fugiat quia.",
     rate: "5",
     location: "Sukuta",
@@ -47,7 +47,7 @@ const users = [
       "https://images.pexels.com/photos/4974912/pexels-photo-4974912.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1https://www.pexels.com/photo/two-men-looking-at-a-laptop-4974920/",
     ],
     name: "Cyber",
-    aboutCustomer:
+    aboutSkilledWorker:
       "Hi there! I am Ous, psum dolor sit, amet consectetur adipisicing elit. Nisi at, quisquam cum voluptatum sed soluta cupiditate fugiat quia.",
     rate: "5",
     location: "Mars",

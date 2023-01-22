@@ -66,12 +66,12 @@ const WantTo = () => {
 };
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: "gray",
+    backgroundColor: "#EEEEEE",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
     backgroundColor: "#fff",
-    // borderWidth: 2,
+    borderWidth: 2,
     marginRight: 10,
     borderRadius: 15,
     // paddingHorizontal: 10,

@@ -57,13 +57,14 @@ const ServicesShort = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   imgContainer: {
-    // backgroundColor: "#fff",
+    backgroundColor: "#EEEEEE",
     width: 150,
     height: 150,
     borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
     marginRight: 10,
+    borderRadius: 10,
     // paddingHorizontal: 10,
   },
   img: { width: 100, height: 100 },
